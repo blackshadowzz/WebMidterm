@@ -1,0 +1,44 @@
+﻿@model IEnumerable<WebMidterm.Models.DirectorMovie>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    ViewData["TitleForm"] = "Director";
+    ViewData["SubNavbar"] = "director";
+}
+
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-primary">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Director)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                 @item.Director.FirstName @item.Director.LastName
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Movie.Title)
+            </td>
+            <td>
+              @*  @Html.ActionLink("Edit", "Edit", new {  id=item.DirectorId  }) |
+                @Html.ActionLink("Details", "Details", new {  id=item.DirectorId  }) |
+                @Html.ActionLink("Delete", "Delete", new {  id=item.DirectorId  })*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+

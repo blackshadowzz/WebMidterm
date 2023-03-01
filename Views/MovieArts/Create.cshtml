@@ -1,0 +1,68 @@
+﻿@model WebMidterm.Models.MovieArt
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h4>MovieArt</h4>
+<form asp-action="Create" enctype="multipart/form-data">
+<div class="row">
+    <div class="col-md-7">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MovieId" class="control-label"></label>
+                <select asp-for="MovieId" class="form-control" asp-items="ViewBag.MovieId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ArtName" class="control-label"></label>
+                <input asp-for="ArtName" class="form-control" />
+                <span asp-validation-for="ArtName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Artist" class="control-label"></label>
+                <input asp-for="Artist" class="form-control" />
+                <span asp-validation-for="Artist" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+         
+
+    </div>
+    <div class="col-md-5">
+            <div class="form-group">
+                <div>
+                    <img src="" alt="profile" id="profile">
+                </div>
+                @* <label asp-for="FrontImage" class="control-label"></label>*@
+                <input type="file" accept="images/*" asp-for="FrontImage" class="form-control" />
+                <span asp-validation-for="FrontImage" class="text-danger"></span>
+            </div>
+    </div>
+</div>
+    <div class="d-flex justify-content-between">
+        <input type="submit" value="Create" class="btn btn-primary" />
+        <div>
+            <a asp-action="Index" class="btn btn-outline-info">Back to List</a>
+        </div>
+    </div>
+</form>
+
+<script>
+    let profile = document.querySelector('input[type=file]');
+    profile.addEventListener("change", function (e) {
+        var img = document.querySelector('#profile');
+        img.setAttribute("src", window.URL.createObjectURL(e.target.files[0]));
+        img.setAttribute("style", "display.block;width:100%;height:305px;object-fit:fill;");
+        output.onload = function () {
+            URL.revokeObjectURL(output.src)
+        }
+
+    });
+</script>

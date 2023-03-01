@@ -1,0 +1,49 @@
+﻿@model WebMidterm.Models.ActorMovie
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    ViewData["TitleForm"] = "Assign Actor To Movie";
+    ViewData["SubNavbar"] = "actor";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="MovieId" class="control-label"></label>
+                    <select asp-for="MovieId" class="form-control" asp-items="ViewBag.MovieId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Movie" class="control-label">Movie Title</label>
+                    <ul style="list-style-type:none;">
+                        @foreach (var m in ViewBag.ActorId)
+                        {
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="PersonId" value="@m.PersonId" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    @m.FirstName @m.LastName
+                                </label>
+                            </div>
+
+                        }
+                    </ul>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <input type="submit" value="Save" class="btn btn-outline-primary" />
+
+                    <div>
+                        <a asp-action="Index" class="btn btn-outline-info">Back to List</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</div>
+

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<WebMidterm.Models.MovieArt>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-primary">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ArtName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Artist)
+            </th>
+            <th>
+                Art
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArtName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Artist)
+            </td>
+            <td>
+                <img src="~/images/@item.ArtistUrl" height="30px" width="30px">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Movie.Title)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="bi bi-pen"></a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="bi bi-eye"></a> |
+                    <a asp-action="Delete"  asp-route-id="@item.Id" class="bi bi-trash"></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
