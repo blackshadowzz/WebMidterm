@@ -3,77 +3,113 @@
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout2.cshtml";
+    ViewData["TitleForm"] = "Movie Detail";
+    ViewData["SubNavbar"] = "movie";
 }
+<div class="container">
+<div class="row">
+    <div class="col-md-3">
 
-<h1>Details</h1>
+        <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false">
 
-<div>
-    <h4>Movie</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Languege)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Languege)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Budget)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Budget)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Released)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Released)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Duration)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Duration)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Country)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Country)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Production)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Production)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AgeLimited)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AgeLimited)
-        </dd>
-    </dl>
+
+            <div class="carousel-inner">
+                @foreach (var a in Model.MovieArts)
+                {
+                    <div class="carousel-item hover active">
+                        <img src="~/images/@a.ArtistUrl">
+                    </div>
+                }
+
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <div class="">
+           
+        </div>
+    </div>
+    <div class="col-md-9">
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Languege)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Languege)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.MovieType)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.MovieType)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Budget)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Budget)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Released)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Released)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Duration)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Duration)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Country)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Country)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Production)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Production)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.AgeLimited)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.AgeLimited)
+            </dd>
+            
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+        </dl>
+    </div>
+
+   
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="d-flex justify-content-between mt-2">
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-outline-primary">Edit</a>
+    <div>
+        <a asp-action="Index" class="btn btn-outline-info bi bi-arrow-right-square"></a>
+    </div>
+</div>
 </div>

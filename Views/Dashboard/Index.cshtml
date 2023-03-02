@@ -1,10 +1,64 @@
-﻿
+﻿@model IEnumerable<WebMidterm.Models.Movie>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout2.cshtml";
     ViewData["TitleForm"] = "Dashboard";
     ViewData["SubNavbar"] = "dashboard";
 }
+
+<div>
+    <div>
+        <div class="row row-cols-1 row-cols-md-5 g-4">
+            @foreach(var m in Model)
+            {
+                <div class="col">
+                    <div class="card">
+
+
+                            <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false">
+
+                
+                                <div class="carousel-inner">
+                                @foreach (var a in m.MovieArts)
+                                {
+                                    <div class="carousel-item hover active">
+                                        <img src="~/images/@a.ArtistUrl" class="card-img-top" alt="...">
+                                    </div>
+                                }
+                                </div>
+                      
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                            
+                        <div class="card-body">
+                            <h6 class="card-title">
+                                <a asp-action="Details" asp-route-id="@m.Id" style="text-decoration:none;">
+                                    @m.Title
+                                </a>
+                               
+                            </h6>
+                            <div class="card-text d-flex justify-content-between">
+                               <small class="text-muted">@m.Duration</small>
+                                <small class="text-muted">@m.Released.Value.Year</small>
+                               <small class="text-muted">@m.MovieType</small>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            }
+            
+           
+        </div>
+    </div>
+</div>
 
 
 

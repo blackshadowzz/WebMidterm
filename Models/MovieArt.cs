@@ -13,6 +13,7 @@ namespace WebMidterm.Models
         public string? ArtName { get; set; }
         [Column(TypeName = "nvarchar(50)")]
         public string? Artist { get; set; }
+  
         public string? ArtistUrl { get; set; }
         [Column(TypeName = "nvarchar(120)")]
         public string? Description { get; set; }

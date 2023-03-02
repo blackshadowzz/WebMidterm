@@ -97,11 +97,12 @@ namespace WebMidterm.Controllers
             }
 
             var movieArt = await _context.MovieArts.FindAsync(id);
+          
             if (movieArt == null)
             {
                 return NotFound();
             }
-            ViewData["MovieId"] = new SelectList(_context.Movies, "Id", "Id", movieArt.MovieId);
+            ViewData["MovieId"] = new SelectList(_context.Movies, "Id", "Title", movieArt.MovieId);
             return View(movieArt);
         }
 
@@ -118,6 +119,14 @@ namespace WebMidterm.Controllers
             {
                 try
                 {
+                    string fileName = FileUpload(movieArt);
+                    if(fileName != null)
+                    {
+                        movieArt.ArtistUrl = fileName;
+                    }
+                    _context.Attach(movieArt);
+                    _context.Entry(movieArt).State = EntityState.Added;
+                    //_context.MovieArts.Add(movieArt);
                     _context.Update(movieArt);
                     await _context.SaveChangesAsync();
                 }
@@ -134,18 +143,16 @@ namespace WebMidterm.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MovieId"] = new SelectList(_context.Movies, "Id", "Id", movieArt.MovieId);
+            ViewData["MovieId"] = new SelectList(_context.Movies, "Id", "Title", movieArt.MovieId);
             return View(movieArt);
         }
 
 
-
-        [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
 
             var movieArt = await _context.MovieArts.FindAsync(id);
-            if (movieArt != null)
+            if (movieArt == null)
             {
                 return BadRequest();
             }

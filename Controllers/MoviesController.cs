@@ -33,7 +33,7 @@ namespace WebMidterm.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Movies
+            var movie = await _context.Movies.Include(m=>m.ActorMovies).Include(x=>x.DirectorMovies).Include(x=>x.MovieArts)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (movie == null)
             {

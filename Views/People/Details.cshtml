@@ -3,13 +3,13 @@
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout2.cshtml";
+    ViewData["TitleForm"] = "Person Detail";
+    ViewData["SubNavbar"] = "person";
 }
 
-<h1>Details</h1>
 
-<div>
-    <h4>Person</h4>
-    <hr />
+<div class="container">
+
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.FirstName)
@@ -87,7 +87,9 @@
         </dd>
     </dl>
 </div>
-<div>
+<div class="d-flex justify-content-between mt-3">
     <a asp-action="Edit" asp-route-id="@Model?.PersonId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <div>
+        <a asp-action="Index" class="btn btn-outline-info bi bi-arrow-right-square"></a>
+    </div>
 </div>

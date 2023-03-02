@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebMidterm.Data;
 
@@ -11,9 +12,11 @@ using WebMidterm.Data;
 namespace WebMidterm.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230301130952_initial03")]
+    partial class initial03
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,9 +81,6 @@ namespace WebMidterm.Migrations
                     b.Property<string>("Languege")
                         .HasColumnType("varchar(30)");
 
-                    b.Property<int?>("MovieType")
-                        .HasColumnType("int");
-
                     b.Property<string>("Production")
                         .HasColumnType("varchar(40)");
 
@@ -90,6 +90,9 @@ namespace WebMidterm.Migrations
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("varchar(30)");
 
                     b.HasKey("Id");
 
